@@ -1,20 +1,18 @@
 import unittest
-# Include other batteries as needed
-from engine.model.batteries import NubbinBattery
+from datetime import datetime, timedelta
+from engine.model.batteries import SpindlerBattery
 
 
-class TestNubbinBattery(unittest.TestCase):
+class TestSpindlerBattery(unittest.TestCase):
     def test_needs_service_true(self):
-        battery = NubbinBattery(last_service_date=datetime(
-            2020, 1, 1), current_date=datetime(2024, 1, 1))
+        last_service_date = datetime.today() - timedelta(days=3*365)
+        battery = SpindlerBattery(last_service_date)
         self.assertTrue(battery.needs_service())
 
     def test_needs_service_false(self):
-        battery = NubbinBattery(last_service_date=datetime(
-            2023, 1, 1), current_date=datetime(2024, 1, 1))
+        last_service_date = datetime.today() - timedelta(days=2*365)
+        battery = SpindlerBattery(last_service_date)
         self.assertFalse(battery.needs_service())
-
-# Other battery tests would follow a similar structure
 
 
 if __name__ == '__main__':

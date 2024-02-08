@@ -1,6 +1,6 @@
 from abc import ABC
 
-from car import Car
+from engine.model.car import Car
 
 
 class SternmanEngine(Car, ABC):
